@@ -16,6 +16,7 @@ jobs:
           npm run lint
   run-tests-build-deploy:
     runs-on: ubuntu-latest
+    needs: run-lint-test-deploy
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -30,6 +31,7 @@ jobs:
 
   run-build-deploy:
     runs-on: ubuntu-latest
+    needs: run-tests-build-deploy
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -44,6 +46,7 @@ jobs:
     
   run-deploy:
     runs-on: ubuntu-latest
+    needs: run-build-deploy
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
