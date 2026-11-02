@@ -1,0 +1,12 @@
+name: outputs-issues workflow
+on: issues
+jobs:
+  outputs-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output issue details in shell via echo
+        env:
+          ISSUES_CONTEXT: ${{ toJSON(github.event.issue) }}
+        run: |
+          echo "Issue details:"
+          echo "$ISSUES_CONTEXT"
