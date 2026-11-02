@@ -1,0 +1,35 @@
+name: Lint, Test, and Deploy workflow
+on: push
+jobs:
+  lint-test-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linting
+        run: |
+          echo "Running linting..."
+          npm run lint
+      
+      - name: Run tests
+        run: |
+          echo "Running tests..."
+          npm run test
+
+      - name: Run Build
+        run: |
+          echo "Building application..."
+          npm run build
+
+    
+
+  
